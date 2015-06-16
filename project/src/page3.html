@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	@@include("_html/head.html", {"title": "Gulp Demo - Page 2"})
+	<script>
+		/*inline script for Alertify demo test*/
+		var message = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu rutrum tortor. Praesent euismod libero quis eros mollis, sit amet pharetra nisl blandit. Phasellus a nunc volutpat, mattis sem quis, pretium dui. Cras quis erat sit amet eros ultricies condimentum.';
+	</script>
+</head>
+<body>
+	@@include("_html/navbar.html", {"page3": "active"})
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h2>Page 3</h2>
+				<p>On this page we can test some of the JS and CSS includes.</p>
+
+				<h4 class="page-header">Alertify</h4>
+				<a href="#" class="btn btn-primary btn-lg" onclick="alertify.alert(message);return false;">Test Alert</a>
+				<a href="#" class="btn btn-primary btn-lg" onclick="alertify.confirm(message);return false;">Test Confirm</a>
+				<a href="#" class="btn btn-primary btn-lg" onclick="alertify.prompt(message);return false;">Test Prompt</a>
+				<a href="#" class="btn btn-info btn-lg" onclick="alertify.log(message);return false;">Test Log</a>
+				<a href="#" class="btn btn-success btn-lg" onclick="alertify.success(message);return false;">Test Success</a>
+				<a href="#" class="btn btn-danger btn-lg" onclick="alertify.error(message);return false;">Test Error</a>
+				<a href="#" class="btn btn-warning btn-lg" onclick="flood(message);return false;">Flood Notices</a>
+			</div>
+		</div>
+	</div>
+
+	@@include("_html/body_end.html")
+</body>
+</html>
