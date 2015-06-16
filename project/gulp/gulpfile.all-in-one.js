@@ -17,11 +17,11 @@ var browserSync = require('browser-sync').create();
 /*tasks*/
 gulp.task('clean', function () {
 	/*del.sync is blocking - no need to list task as a dependency*/
-	return del.sync(['../build/**/*'], {force: true});
+	return del.sync(['../build/*'], {force: true});
 });
 
 gulp.task('noop', function () {
-	return gulp.src('../src/noop/**/*')
+	return gulp.src('../src/noop/**')
 	.pipe(gulp.dest('../build'));
 });
 
@@ -77,7 +77,7 @@ gulp.task('reload', ['build'], function() {
 });
 
 gulp.task('watch', ['browsersync'], function () {
-	var watcher = gulp.watch('../src/**/*', ['reload']);
+	var watcher = gulp.watch('../src/**', ['reload']);
 
 	watcher.on('change', function (event) {
 		console.log('\nFile ' + event.path + ' was ' + event.type + ', running tasks...');

@@ -2,7 +2,7 @@
 
 var browserSync = require('browser-sync').create();
 
-exports.init = function() {
+exports.init = function () {
 	browserSync.init({
 		server: {
 			baseDir: '../build'
@@ -10,6 +10,6 @@ exports.init = function() {
 	});
 };
 
-exports.reload = function() {
+exports.reload = function () {
 	browserSync.reload();
 };

@@ -3,6 +3,6 @@
 var gulp = require('gulp');
 
 module.exports = function () {
-	return gulp.src('../src/noop/**/*')
+	return gulp.src('../src/noop/**')
 	.pipe(gulp.dest('../build'));
 };
