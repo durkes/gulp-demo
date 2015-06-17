@@ -14,6 +14,7 @@ var minifyCSS = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
 var browserSync = require('browser-sync').create();
 
+
 /*tasks*/
 gulp.task('clean', function () {
 	/*del.sync is blocking - no need to list task as a dependency*/
@@ -43,25 +44,30 @@ gulp.task('js', function () {
 	.pipe(gulp.dest('../build/js'));
 });
 
-gulp.task('minify', ['html', 'css', 'js'], function (done) {
-	gulp.src('../build/**/*.html')
+gulp.task('minifyHTML', ['html'], function () {
+	return gulp.src('../build/**/*.html')
 	.pipe(minifyHTML({empty: true, cdata: true, conditionals: true, spare: true, quotes: false}))
 	.pipe(gulp.dest('../build'));
-
-	gulp.src('../build/**/*.css')
-	.pipe(minifyCSS())
-	.pipe(gulp.dest('../build'));
-
-	gulp.src('../build/**/*.js')
-	.pipe(uglify())
-	.pipe(gulp.dest('../build'));
-
-	done();
 });
 
+gulp.task('minifyCSS', ['css'], function () {
+	return gulp.src('../build/**/*.css')
+	.pipe(minifyCSS())
+	.pipe(gulp.dest('../build'));
+});
+
+gulp.task('minifyJS', ['js'], function () {
+	return gulp.src('../build/**/*.js')
+	.pipe(uglify())
+	.pipe(gulp.dest('../build'));
+});
+
+
 /*groups*/
+gulp.task('minify', ['minifyHTML', 'minifyCSS', 'minifyJS']);
 gulp.task('build', ['clean', 'noop', 'html', 'css', 'js', 'minify']);
 gulp.task('default', ['watch']);
+
 
 /*browsersync + watch*/
 gulp.task('browsersync', ['build'], function() {
